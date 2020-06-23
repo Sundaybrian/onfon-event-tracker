@@ -19,7 +19,14 @@ module.exports = (db) => {
         actualProgramTime,
       });
 
-      res.status(200).json(result);
+      res.status(200).json({
+        _id,
+        totalStartCount,
+        totalStopCount,
+        totalServersRunning,
+        actualProgramTime,
+        totalServersCount,
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json(error);
