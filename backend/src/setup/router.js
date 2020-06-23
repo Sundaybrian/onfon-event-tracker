@@ -5,6 +5,7 @@ const fetchSupervisor = require("../handlers/fetch-supervisor");
 const createColors = require("../handlers/create-colors");
 
 const createLogs = require("../handlers/create-logs");
+const fetchLogs = require("../handlers/fetch-logs");
 
 const {
   createSupervisorValidator,
@@ -31,6 +32,7 @@ module.exports = (app, db) => {
   router.post("/api/create-colors", createColorsValidator, createColors(db));
 
   router.post("/api/create-logs", createLogsValidator, createLogs(db));
+  router.get("/api/fetch-logs", fetchLogs(db));
 
   app.use(router);
 };
