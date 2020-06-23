@@ -3,6 +3,7 @@ const mongodb = require("mongodb");
 const express = require("express");
 const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
+const setupRouter = require("./setup/router");
 
 const app = express();
 
@@ -13,6 +14,9 @@ setupMiddleware(app);
 setupDatabase()
   .then((client) => {
     // start server on succesfull db connnection
+
+    // setup router
+    setupRouter(app, client);
 
     const PORT = process.env.PORT || 5000;
 
