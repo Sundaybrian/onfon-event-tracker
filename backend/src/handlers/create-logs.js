@@ -17,6 +17,7 @@ module.exports = (db) => {
     };
 
     try {
+      // TODO: remember to format the diplay message time
       const result = await db.collection("logs").insertOne(data);
       res.status(200).json(result);
     } catch (error) {

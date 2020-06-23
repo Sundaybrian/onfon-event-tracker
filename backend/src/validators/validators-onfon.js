@@ -42,3 +42,19 @@ exports.createColorsValidator = async (req, res, next) => {
     return res.status(422).json(error);
   }
 };
+
+exports.createLogsValidator = async (req, res, next) => {
+  try {
+    await validateAll(req.body, {
+      programTime: "required|date",
+      event: "required|string",
+      message: "required|string",
+      actualTime: "required|date",
+      displayMessage: "required|string",
+    });
+
+    return next();
+  } catch (error) {
+    return res.status(422).json(error);
+  }
+};

@@ -6,6 +6,7 @@ const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // register middlewares to the app
 setupMiddleware(app);
@@ -16,8 +17,6 @@ const start = async () => {
   const db = await setupDatabase();
 
   setupRouter(app, db);
-
-  const PORT = process.env.PORT || 5000;
 
   app.listen(PORT, () => {
     console.log(`server started on port ${PORT}`);
