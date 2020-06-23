@@ -16,3 +16,17 @@ exports.createSupervisorValidator = async (req, res, next) => {
     return res.status(422).json(error);
   }
 };
+
+exports.createColorsValidator = async (req, res, next) => {
+  try {
+    await validateAll(req.body, {
+      _id: "required|string",
+      currentColor: "required|string",
+      nextColor: "string",
+    });
+
+    return next();
+  } catch (error) {
+    return res.status(422).json(error);
+  }
+};
