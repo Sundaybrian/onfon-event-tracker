@@ -4,9 +4,11 @@ exports.createSupervisorValidator = async (req, res, next) => {
   try {
     await validateAll(req.body, {
       _id: "required",
-      totalServers: "required",
-      totalStartCount: "required",
-      totalStopCount: "required",
+      totalServersCount: "required|integer",
+      totalServersRunning: "required|integer",
+      totalStartCount: "required|integer",
+      totalStopCount: "required|integer",
+      actualProgramTime: "date",
     });
 
     return next();

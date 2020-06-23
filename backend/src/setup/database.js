@@ -1,8 +1,10 @@
 const mongodb = require("mongodb");
 const uri = "mongodb://localhost/onfon";
 
-module.exports = () => {
+module.exports = async () => {
   const client = new mongodb.MongoClient(uri, { useUnifiedTopology: true });
 
-  return client.connect();
+  await client.connect();
+
+  return client.db();
 };

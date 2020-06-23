@@ -10,21 +10,21 @@ const app = express();
 // register middlewares to the app
 setupMiddleware(app);
 
-// setup db
-setupDatabase()
-  .then((client) => {
-    // start server on succesfull db connnection
+//
 
-    // setup router
-    setupRouter(app, client);
+const start = async () => {
+  const db = await setupDatabase();
 
-    const PORT = process.env.PORT || 5000;
+  setupRouter(app, db);
 
-    app.listen(PORT, () => {
-      console.log(`server started on port ${PORT}`);
-    });
-  })
-  .catch(console.error);
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+  });
+};
+
+start().catch(console.error);
 
 // // initial routes
 // app.use("/api/events", require("./routes/event"));
