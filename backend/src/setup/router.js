@@ -17,7 +17,8 @@ module.exports = (app, db) => {
     createSupervisorValidator,
     createSupervisor(db)
   );
-  router.post("/api/create-color", createColorsValidator, createColors(db));
+
+  router.post("/api/create-colors", createColorsValidator, createColors(db));
 
   app.use(router);
 };

@@ -1,0 +1,28 @@
+# 1. Backend
+
+## a) database design
+    -logs schema
+    -supervisor obj
+    - create colors
+    - create logs
+    - fetch logs
+    - 
+    -
+## b) api design
+## c) cron job
+## d) code refactor
+
+
+
+
+
+
+
+
+
+
+# 2. Frontend
+## a)state management
+## b)svg clock
+## c)consuming apis
+## d)

@@ -1,0 +1,6 @@
+node_modules*
+backend/node_modules
+.env
+
+# frontend stuff will be here
+frontend/node_modules
