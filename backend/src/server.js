@@ -2,14 +2,25 @@ const cron = require("node-cron");
 const mongodb = require("mongodb");
 const express = require("express");
 const setupMiddleware = require("./setup/middlewares");
+const setupDatabase = require("./setup/database");
 
 const app = express();
 
 // register middlewares to the app
 setupMiddleware(app);
 
-// Middleware
-// app.use(express.json());
+// setup db
+setupDatabase()
+  .then((client) => {
+    // start server on succesfull db connnection
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+      console.log(`server started on port ${PORT}`);
+    });
+  })
+  .catch(console.error);
 
 // // initial routes
 // app.use("/api/events", require("./routes/event"));
@@ -32,9 +43,3 @@ setupMiddleware(app);
 // }
 
 // scheduler(param, param2);
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`server started`);
-});
