@@ -6,8 +6,6 @@ const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
 
-const getApiAndEmit = require("./utils/getApiAndEmit");
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -27,7 +25,7 @@ const start = async () => {
 
   io.on("connection", (socket) => {
     console.log("===================");
-    console.log("Client connected......");
+    console.log("New Client connected......");
 
     if (interval) {
       clearInterval(interval);
@@ -40,6 +38,12 @@ const start = async () => {
       clearInterval(interval);
     });
   });
+
+  const getApiAndEmit = (socket) => {
+    const response = new Date();
+    // emit a new message which will be consumed by the client
+    socket.emit("dateFromApi", response);
+  };
 
   server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);
