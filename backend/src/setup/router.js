@@ -20,7 +20,7 @@ const {
 
 module.exports = (app, db) => {
   // launch application
-  router.post("/api/launch", launch(db));
+  router.post("/", launch());
 
   router.post(
     "/api/create-supervisor",

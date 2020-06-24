@@ -6,6 +6,8 @@ const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
 
+const getApiAndEmit = require("./utils/getApiAndEmit");
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -18,14 +20,33 @@ const start = async () => {
   setupRouter(app, db);
 
   const server = http.createServer(app);
+
   const io = socketIo(server);
 
-  app.listen(PORT, () => {
-    console.log(`server started on port ${PORT}`);
+  let interval;
+
+  io.on("connection", (socket) => {
+    console.log("===================");
+    console.log("Client connected......");
+
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    interval = setInterval(() => getApiAndEmit(socket), 1000);
+
+    socket.on("disconnect", () => {
+      console.log("Client disconnected......");
+      clearInterval(interval);
+    });
+  });
+
+  server.listen(PORT, () => {
+    console.log(`server listening on port ${PORT}`);
   });
 };
 
-start().catch(console.error);
+start().catch((error) => console.error(error));
 
 // // initial routes
 // app.use("/api/events", require("./routes/event"));

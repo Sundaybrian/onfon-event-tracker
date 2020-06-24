@@ -1,6 +1,6 @@
-module.exports = (client) => {
+module.exports = () => {
   // return a valid express handler
   return (req, res) => {
-    res.json({ message: "we are live...." });
+    res.send({ message: "we are live...." }).status(200);
   };
 };
