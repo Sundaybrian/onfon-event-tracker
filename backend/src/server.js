@@ -6,6 +6,8 @@ const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
 
+const logTimeStarted = require("./utils/logTimeStarted");
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -18,7 +20,6 @@ const start = async () => {
   setupRouter(app, db);
 
   const server = http.createServer(app);
-
   const io = socketIo(server);
 
   let interval;
@@ -26,7 +27,7 @@ const start = async () => {
 
   io.on("connection", (socket) => {
     console.log("===================");
-    console.log("New Client connected......");
+    console.log("New Client connected......", new Date());
 
     if (interval) {
       clearInterval(interval);
@@ -54,9 +55,13 @@ const start = async () => {
       minute,
       seconds,
     };
+
     // emit a new message which will be consumed by the client
     socket.emit("dateFromApi", response);
   };
+
+  // log time started
+  await logTimeStarted(db);
 
   server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);
