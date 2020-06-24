@@ -6,5 +6,6 @@ module.exports = async () => {
 
   await client.connect();
 
+  // return db instance
   return client.db();
 };

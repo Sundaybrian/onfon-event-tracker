@@ -1,5 +1,8 @@
 const router = require("express").Router();
+
 const launch = require("../handlers/launch");
+
+// handlers
 const createSupervisor = require("../handlers/create-supervisor");
 const fetchSupervisor = require("../handlers/fetch-supervisor");
 const createColors = require("../handlers/create-colors");
@@ -7,6 +10,7 @@ const createColors = require("../handlers/create-colors");
 const createLogs = require("../handlers/create-logs");
 const fetchLogs = require("../handlers/fetch-logs");
 
+// validators
 const {
   createSupervisorValidator,
   fetchSupervisorValidator,

@@ -1,5 +1,6 @@
 const cron = require("node-cron");
-const mongodb = require("mongodb");
+const socketIo = require("socket.io");
+const http = require("http");
 const express = require("express");
 const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
@@ -8,15 +9,16 @@ const setupRouter = require("./setup/router");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// register middlewares to the app
+// register middlewares to the express app e.g cors,bodyparser
 setupMiddleware(app);
-
-//
 
 const start = async () => {
   const db = await setupDatabase();
 
   setupRouter(app, db);
+
+  const server = http.createServer(app);
+  const io = socketIo(server);
 
   app.listen(PORT, () => {
     console.log(`server started on port ${PORT}`);

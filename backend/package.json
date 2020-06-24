@@ -18,7 +18,8 @@
     "indicative": "^7.4.4",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.19",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
