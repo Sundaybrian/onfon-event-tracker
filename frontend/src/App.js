@@ -7,14 +7,12 @@ const App = () => {
   useEffect(() => {
     const socket = socketIOClient("/");
     socket.on("dateFromApi", (data) => {
-      setResponse(data);
+      console.log(data);
+      let response = data.hour + ":" + data.minute + ":" + data.seconds;
+      setResponse(response);
     });
   }, []);
-  return (
-    <p>
-      The time is <time dateTime={response}>{response}</time>
-    </p>
-  );
+  return <p>The time is {response}</p>;
 };
 
 export default App;
