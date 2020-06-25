@@ -29,8 +29,8 @@ const startTask = () => {
 };
 
 const stopTask = (db) => {
-  cron.schedule("*/1 * * * * *", async function () {
-    //start globals
+  cron.schedule("*/40 * * * * *", async function () {
+    //stop globals
     let count = await getServerCount(db);
     global.stopEventName = "STOP";
     global.stopServerCount = Math.floor(Math.random() * (count - 5 + 1) + 5);
@@ -38,7 +38,18 @@ const stopTask = (db) => {
   });
 };
 
+const reportTask = (db) => {
+  cron.schedule("*/1 * * * * *", async function () {
+    //report globals
+    let count = await getServerCount(db);
+    global.reportEventName = "REPORT";
+    global.reportIsHappening = global.programTime;
+    console.log(count);
+  });
+};
+
 exports.cronjob = (db) => {
   // startTask();
-  stopTask(db);
+  // stopTask(db);
+  reportTask(db);
 };
