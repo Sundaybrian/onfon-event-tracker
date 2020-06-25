@@ -63,3 +63,45 @@ exports.getServerCount = async (db) => {
     console.error(error);
   }
 };
+
+exports.updateSupervisorStop = async (db) => {
+  try {
+    const result = await db.collection("Supervisor").updateOne(
+      {
+        _id: "supervisor",
+      },
+      {
+        $inc: {
+          totalServersRunning: -global.stopServerCount,
+          totalStopCount: 1,
+        },
+      }
+    );
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// programTime,
+//       event,
+//       message,
+//       actualTime,
+//       displayMessage,
+exports.createLogsStop = async (db) => {
+  try {
+    const data = {
+      programTime: global.programTime,
+      event: global.stopEventName,
+      message: `${global.stopEventName} ${global.stopServerCount} servers`,
+      actualTime: global.currentTime,
+      displayMessage: `${global.programTime} ${global.stopEventName} ${global.stopServerCount} servers`,
+    };
+
+    const result = await db.collection("logs").insertOne(data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};

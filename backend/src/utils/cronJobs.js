@@ -35,8 +35,6 @@ const stopTask = (db) => {
     global.stopEventName = "STOP";
     global.stopServerCount = Math.floor(Math.random() * (count - 5 + 1) + 5);
     global.stopIsHappening = global.programTime;
-
-    console.log(stopServerCount, "------------", count);
   });
 };
 
