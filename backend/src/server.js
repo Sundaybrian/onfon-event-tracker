@@ -6,7 +6,7 @@ const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
 
 const logTimeStarted = require("./utils/logTimeStarted");
-const { cronJob } = require("./utils/cronJobs");
+const { cronjob } = require("./utils/cronJobs");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +19,9 @@ const start = async () => {
 
   setupRouter(app, db);
 
+  // log time started
+  await logTimeStarted(db);
+
   const server = http.createServer(app);
   const io = socketIo(server);
 
@@ -26,12 +29,15 @@ const start = async () => {
   let totalSeconds = 43200; // rep 12hrs
 
   io.on("connection", (socket) => {
-    console.log("===================");
     console.log("New Client connected......", new Date());
 
     if (interval) {
       clearInterval(interval);
     }
+
+    // lauch cronjob here
+    cronjob(db);
+    // launch time logged here
 
     interval = setInterval(() => getApiAndEmit(socket), 1000);
 
@@ -59,12 +65,6 @@ const start = async () => {
     // emit a new message which will be consumed by the client
     socket.emit("dateFromApi", response);
   };
-
-  // log time started
-  await logTimeStarted(db);
-
-  // start tasks
-  cronJob();
 
   server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);

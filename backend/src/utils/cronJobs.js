@@ -1,14 +1,5 @@
 const cron = require("node-cron");
 
-// initial routes
-// app.use("/api/events", require("./routes/event"));
-
-// const precedence = {
-//   START: 1,
-//   STOP: 2,
-//   REPORT: 3,
-// };
-
 const tasks = [
   {
     task: "START",
@@ -27,31 +18,15 @@ const tasks = [
   },
 ];
 
-const STARTPARAM = "*/1 * * * * *"; // run every 30sec
-const STOPPARAM = "*/4 * * * * *"; // run every 40sec
-const REPORTPARAM = "*/5 * * * * *"; // run every 50sec
-
-// function scheduler(param, param2) {
-//   cron.schedule(param, function () {
-//     console.log("running a task every 1 second");
-//   });
-// let startTask = cron.schedule(STARTPARAM, function () {
-//   console.log("running a task every 1econd");
-// });
-
-// scheduler(param, param2);
-
-function scheduleJob(counter) {
-  let job = `${tasks[counter].task}`;
-  job = cron.schedule(tasks[counter].interval, function () {
-    console.log(`running a ${job} every ${tasks[counter].interval}`);
+const startTask = (db) => {
+  cron.schedule("*/1 * * * * *", function () {
+    let servers = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+    console.log(
+      `running a start every second generating random servers ${servers}----`
+    );
   });
+};
 
-  return job;
-}
-
-exports.cronJob = () => {
-  for (i = 0; i < tasks.length; i++) {
-    scheduleJob(i);
-  }
+exports.cronjob = (db) => {
+  startTask(db);
 };
