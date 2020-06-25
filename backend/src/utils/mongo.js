@@ -105,3 +105,21 @@ exports.createLogsStop = async (db) => {
     console.error(error);
   }
 };
+
+//
+exports.createLogsReport = async (db) => {
+  try {
+    const data = {
+      programTime: global.programTime,
+      event: global.reportEventName,
+      message: `${global.reportEventName} ${global.reportServerCount} servers running`,
+      actualTime: global.currentTime,
+      displayMessage: `${global.programTime} ${global.reportEventName} ${global.reportServerCount} servers running`,
+    };
+
+    const result = await db.collection("logs").insertOne(data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
