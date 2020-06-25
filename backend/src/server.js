@@ -37,7 +37,7 @@ const start = async () => {
     }
 
     // lauch cronjob here
-    cronjob(db);
+    cronjob();
     // launch time logged here
 
     interval = setInterval(() => getApiAndEmit(socket), 1000);

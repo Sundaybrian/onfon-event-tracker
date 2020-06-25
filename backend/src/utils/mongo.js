@@ -5,9 +5,9 @@
 //       actualProgramTime,
 //     totalServersCount,
 
-exports.updateSupervisor = async () => {
+exports.updateSupervisor = async (db) => {
   try {
-    const res = await global.database.collection("Supervisor").updateOne(
+    const result = await db.collection("Supervisor").updateOne(
       {
         _id: "supervisor",
       },
@@ -18,6 +18,8 @@ exports.updateSupervisor = async () => {
         },
       }
     );
+
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -28,7 +30,7 @@ exports.updateSupervisor = async () => {
 //       message,
 //       actualTime,
 //       displayMessage,
-exports.createLogs = async () => {
+exports.createLogs = async (db) => {
   try {
     const data = {
       programTime: global.programTime,
@@ -38,7 +40,8 @@ exports.createLogs = async () => {
       displayMessage: `${global.programTime}${global.startEventName} ${global.startServerCount} servers`,
     };
 
-    const res = await global.database.collection("logs").insertOne(data);
+    const result = await db.collection("logs").insertOne(data);
+    return result;
   } catch (error) {
     console.error(error);
   }

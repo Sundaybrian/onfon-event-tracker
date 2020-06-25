@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const launch = require("../handlers/launch");
+const checkForTask = require("../handlers/check-for-task");
 
 // handlers
 const createSupervisor = require("../handlers/create-supervisor");
@@ -20,7 +20,7 @@ const {
 
 module.exports = (app, db) => {
   // launch application
-  router.post("/api/launch", launch());
+  router.post("/api/check-for-task", checkForTask(db));
 
   router.post(
     "/api/create-supervisor",

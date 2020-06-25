@@ -24,6 +24,8 @@ const startTask = () => {
     global.startEventName = "START";
     global.startServerCount = Math.floor(Math.random() * (20 - 10 + 1) + 10);
     global.startIsHappening = global.programTime;
+
+    console.log(global.startServerCount);
   });
 };
 
