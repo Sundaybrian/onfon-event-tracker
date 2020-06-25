@@ -18,19 +18,15 @@ const tasks = [
   },
 ];
 
-const startTask = (db) => {
+const startTask = () => {
   cron.schedule("*/1 * * * * *", function () {
-    let servers = Math.floor(Math.random() * (20 - 10 + 1) + 10);
-    // console.log(
-    //   `running a start every second generating random servers ${servers}----`
-    // );
-
-    global.testServer = Math.floor(Math.random() * (20 - 10 + 1) + 10);
-
-    console.log(global.testServer, "-------------", global.currentTime);
+    //start globals
+    global.startEventName = "START";
+    global.startServerCount = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+    global.startIsHappening = global.programTime;
   });
 };
 
-exports.cronjob = (db) => {
-  startTask(db);
+exports.cronjob = () => {
+  startTask();
 };

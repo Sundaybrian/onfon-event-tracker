@@ -16,6 +16,7 @@ setupMiddleware(app);
 
 const start = async () => {
   const db = await setupDatabase();
+  global.database = db; //to be used where db is not accesible
 
   setupRouter(app, db);
 
@@ -62,7 +63,7 @@ const start = async () => {
       seconds,
     };
 
-    // update program time everywhere
+    // set global variables and update program time and current time everywhere
     global.programTime = hour + ":" + minute + ":" + seconds;
     let d = new Date();
     global.currentTime = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
