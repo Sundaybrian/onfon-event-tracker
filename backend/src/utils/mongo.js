@@ -37,7 +37,7 @@ exports.createLogs = async (db) => {
       event: global.startEventName,
       message: `${global.startEventName} ${global.startServerCount} servers`,
       actualTime: global.currentTime,
-      displayMessage: `${global.programTime}${global.startEventName} ${global.startServerCount} servers`,
+      displayMessage: `${global.programTime} ${global.startEventName} ${global.startServerCount} servers`,
     };
 
     const result = await db.collection("logs").insertOne(data);
