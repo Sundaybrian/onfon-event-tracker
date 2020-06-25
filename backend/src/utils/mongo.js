@@ -46,3 +46,20 @@ exports.createLogs = async (db) => {
     console.error(error);
   }
 };
+
+exports.getServerCount = async (db) => {
+  try {
+    const result = await db.collection("Supervisor").findOne(
+      {
+        _id: "supervisor",
+      },
+      {
+        totalServersRunning: 1,
+      }
+    );
+
+    return result["totalServersRunning"];
+  } catch (error) {
+    console.error(error);
+  }
+};
