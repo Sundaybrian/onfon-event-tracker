@@ -21,9 +21,13 @@ const tasks = [
 const startTask = (db) => {
   cron.schedule("*/1 * * * * *", function () {
     let servers = Math.floor(Math.random() * (20 - 10 + 1) + 10);
-    console.log(
-      `running a start every second generating random servers ${servers}----`
-    );
+    // console.log(
+    //   `running a start every second generating random servers ${servers}----`
+    // );
+
+    global.testServer = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+
+    console.log(global.testServer, "-------------", global.currentTime);
   });
 };
 

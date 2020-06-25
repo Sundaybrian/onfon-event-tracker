@@ -62,6 +62,11 @@ const start = async () => {
       seconds,
     };
 
+    // update program time everywhere
+    global.programTime = hour + ":" + minute + ":" + seconds;
+    let d = new Date();
+    global.currentTime = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+
     // emit a new message which will be consumed by the client
     socket.emit("dateFromApi", response);
   };
