@@ -44,7 +44,7 @@ const reportTask = (db) => {
     let count = await getServerCount(db);
     global.reportEventName = "REPORT";
     global.reportIsHappening = global.programTime;
-    console.log(count);
+    global.reportServerCount = count;
   });
 };
 

@@ -3,6 +3,7 @@ const {
   createLogs,
   updateSupervisorStop,
   createLogsStop,
+  createLogsReport,
 } = require("../utils/mongo");
 
 module.exports = (db) => {
@@ -28,6 +29,18 @@ module.exports = (db) => {
       try {
         const supervisor = await updateSupervisorStop(db); // update supervisor
         const logger = await createLogsStop(db); // create logs
+
+        res.json(logger.ops);
+      } catch (error) {
+        res.status(500).json(error);
+        console.error(error);
+      }
+    }
+
+    if (programTime == global.reportIsHappening) {
+      // means report event is taking place
+      try {
+        const logger = await createLogsReport(db); // create logs
 
         res.json(logger.ops);
       } catch (error) {
