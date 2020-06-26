@@ -27,20 +27,15 @@ const TaskState = (props) => {
 
   // fetch task periodically
   const checkForTask = async (data) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     try {
-      const res = await axios.post("/api/check-for-task", data, config);
+      const res = await axios.post("/api/check-for-task", data);
 
       dispatch({
         type: FETCH_TASK,
         payload: res.data,
       });
-      console.log(res, "------------------------");
     } catch (error) {
+      console.log(error, "------------------------");
       dispatch({
         type: TASK_ERROR,
         payload: error.response.error,

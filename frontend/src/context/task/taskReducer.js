@@ -18,6 +18,13 @@ export default (state, action) => {
         ...state,
         logs: [...action.payload],
       };
+    case FETCH_TASK:
+      return {
+        ...state,
+        wallColor: action.payload.wall_color,
+        faceColor: action.payload.face_color,
+        hourColor: action.payload.hour_color,
+      };
 
     default:
       return state;

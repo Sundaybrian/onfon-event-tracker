@@ -9,6 +9,7 @@ const App = () => {
   const {
     setProgramTime,
     programTime,
+    checkForTask,
     wallColor,
     faceColor,
     hourColor,
@@ -18,10 +19,26 @@ const App = () => {
   useEffect(() => {
     const socket = socketIOClient("/");
     socket.on("dateFromApi", (data) => {
-      console.log(data);
       let response = data.hour + ":" + data.minute + ":" + data.seconds;
       setProgramTime(response);
+
+      const interval = setInterval(
+        () =>
+          checkForTask({
+            programTime: response,
+            wallColor,
+            faceColor,
+            hourColor,
+          }),
+        5000
+      );
+      // clear interval after unmounting
+      return () => clearInterval(interval);
     });
+
+    // if (programTime) {
+
+    // }
   }, []);
 
   const fetchReports = () => {
