@@ -14,7 +14,7 @@ import {
 const TaskState = (props) => {
   const initialState = {
     programTime: null,
-    wallColor: "#222",
+    wallColor: "#951c49",
     faceColor: "#fb3",
     hourColor: "#611224",
     currentTask: "",
@@ -39,6 +39,7 @@ const TaskState = (props) => {
         type: FETCH_TASK,
         payload: res.data,
       });
+      console.log(res, "------------------------");
     } catch (error) {
       dispatch({
         type: TASK_ERROR,

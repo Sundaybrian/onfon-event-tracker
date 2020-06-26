@@ -32,14 +32,17 @@ const App = () => {
   return (
     <div className="container mt-4">
       <div className="row">
-        <div className="col-md-6 wall-color">
+        <div
+          className="col-md-6"
+          style={{ backgroundColor: wallColor, height: "100%" }}
+        >
           <div className="row">
             <div className="col-md-12">
               <h4>programTime</h4>
               <p>The time is {programTime}</p>
             </div>
             <div className="col-md-6">Current Task</div>
-            <div className="col-md-6">Current Time</div>
+            <div className="col-md-6">{programTime}</div>
             <div className="col-md-6 offset-3">
               <button
                 className="btn btn-primary"
