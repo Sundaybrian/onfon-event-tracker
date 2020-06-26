@@ -3,22 +3,49 @@ import axios from "axios";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { FETCH_TASK, SET_CURRENT, SET_PROGRAM_TIME, LOAD_TASKS } from "./types";
+import {
+  FETCH_TASK,
+  SET_CURRENT,
+  SET_PROGRAM_TIME,
+  LOAD_TASKS,
+  TASK_ERROR,
+} from "./types";
 
 const TaskState = (props) => {
   const initialState = {
     programTime: null,
-    wallColor: "",
-    faceColor: "",
-    hourColor: "",
+    wallColor: "#222",
+    faceColor: "#fb3",
+    hourColor: "#611224",
     currentTask: "",
     displayMessage: "",
     logs: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
 
   // fetch task periodically
+  const checkForTask = async (data) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/check-for-task", data, config);
+
+      dispatch({
+        type: FETCH_TASK,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: TASK_ERROR,
+        payload: error.response.error,
+      });
+    }
+  };
 
   // set program time
   const setProgramTime = (time) => {
@@ -63,6 +90,8 @@ const TaskState = (props) => {
         displayMessage: state.displayMessage,
         logs: state.logs,
         setProgramTime,
+        loadReports,
+        checkForTask,
       }}
     >
       {props.children}
