@@ -3,7 +3,7 @@ import axios from "axios";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { FETCH_TASK, SET_CURRENT, SET_PROGRAM_TIME } from "./types";
+import { FETCH_TASK, SET_CURRENT, SET_PROGRAM_TIME, LOAD_TASKS } from "./types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -18,12 +18,30 @@ const TaskState = (props) => {
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
 
+  // fetch task periodically
+
   // set program time
   const setProgramTime = (time) => {
     dispatch({
       type: SET_PROGRAM_TIME,
       payload: time,
     });
+  };
+
+  // load reports
+  const loadReports = async () => {
+    try {
+      const res = await axios.get("/api/fetch-logs");
+      dispatch({
+        type: LOAD_TASKS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: TASK_ERROR,
+        payload: error.response.error,
+      });
+    }
   };
 
   // set current task
