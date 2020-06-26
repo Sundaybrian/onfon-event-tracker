@@ -70,7 +70,21 @@ Each operation has a predetermined interval in which it should be started or sto
 - Navigate to frontend `cd ..` then `cd frontend` and run `npm install` to install all frontend dependencies
 - open two terminals one for the frontend and the other for the backend
 - `npm start` to launch the react frontend
+- remember to create a supervisor instance before running thr backend.spin up insomia and use the `create-supervisor enpoint`
+
+```js
+// send this json as the payload for the post
+{
+	"_id":"supervisor",
+	"totalServersCount":0,
+	"totalServersRunning":0,
+	"totalStopCount":0,
+	"totalStartCount":0
+}
+```
+
 - `npm run dev` to launch the backend
+- mongo db is the database of choice is [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) read on how to set it up
 - once the socket connection is formed between the front and back, the timer will be launched, and the program starts
 - consequently you can read on [concurrently](https://www.npmjs.com/package/concurrently) and try to run the whole backend and frontend with one terminal
 
