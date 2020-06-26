@@ -1,4 +1,10 @@
-import { FETCH_TASK, SET_CURRENT, SET_PROGRAM_TIME } from "./types";
+import {
+  FETCH_TASK,
+  SET_CURRENT,
+  SET_PROGRAM_TIME,
+  LOAD_TASKS,
+  TASK_ERROR,
+} from "./types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -7,6 +13,12 @@ export default (state, action) => {
         ...state,
         programTime: action.payload,
       };
+    case LOAD_TASKS:
+      return {
+        ...state,
+        logs: [...action.payload],
+      };
+
     default:
       return state;
   }

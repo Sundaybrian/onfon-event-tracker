@@ -2,10 +2,18 @@ import React, { useEffect, useState, useContext } from "react";
 import socketIOClient from "socket.io-client";
 
 import TaskContext from "./context/task/taskContext";
+import Logs from "./components/Logs";
 
 const App = () => {
   const context = useContext(TaskContext);
-  const { setProgramTime, programTime } = context;
+  const {
+    setProgramTime,
+    programTime,
+    wallColor,
+    faceColor,
+    hourColor,
+    loadReports,
+  } = context;
 
   useEffect(() => {
     const socket = socketIOClient("/");
@@ -15,6 +23,11 @@ const App = () => {
       setProgramTime(response);
     });
   }, []);
+
+  const fetchReports = () => {
+    // fetch all logs
+    loadReports();
+  };
 
   return (
     <div className="container mt-4">
@@ -28,12 +41,17 @@ const App = () => {
             <div className="col-md-6">Current Task</div>
             <div className="col-md-6">Current Time</div>
             <div className="col-md-6 offset-3">
-              <button className="btn btn-primary">Report</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => fetchReports()}
+              >
+                Report
+              </button>
             </div>
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Logs</h4>
+          <Logs />
         </div>
       </div>
     </div>
