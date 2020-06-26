@@ -1,9 +1,9 @@
-import React, { userReducer } from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { FETCH_TASK, SET_CURRENT } from "./types";
+import { FETCH_TASK, SET_CURRENT, SET_PROGRAM_TIME } from "./types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -18,13 +18,21 @@ const TaskState = (props) => {
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
 
-  // set current task
-  const setCurrent = (task) => {
+  // set program time
+  const setProgramTime = (time) => {
     dispatch({
-      type: SET_CURRENT,
-      payload: task,
+      type: SET_PROGRAM_TIME,
+      payload: time,
     });
   };
+
+  // set current task
+  //   const setCurrent = (task) => {
+  //     dispatch({
+  //       type: SET_CURRENT,
+  //       payload: task,
+  //     });
+  //   };
 
   return (
     <TaskContext.Provider
@@ -36,6 +44,7 @@ const TaskState = (props) => {
         currentTask: state.currentTask,
         displayMessage: state.displayMessage,
         logs: state.logs,
+        setProgramTime,
       }}
     >
       {props.children}

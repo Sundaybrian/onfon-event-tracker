@@ -39,7 +39,7 @@ const stopTask = (db) => {
 };
 
 const reportTask = (db) => {
-  cron.schedule("*/1 * * * * *", async function () {
+  cron.schedule("*/50 * * * * *", async function () {
     //report globals
     let count = await getServerCount(db);
     global.reportEventName = "REPORT";
