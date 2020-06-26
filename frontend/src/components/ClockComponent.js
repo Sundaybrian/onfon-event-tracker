@@ -8,11 +8,13 @@ function ClockComponent({}) {
   const { wallClockSeconds } = context;
 
   const [date, setDate] = useState(null);
+
   useEffect(() => {
     var t = new Date(1970, 0, 1); // Epoch
     t.setSeconds(wallClockSeconds);
     setDate(t);
   }, [wallClockSeconds]);
+
   return <Clock value={date} />;
 }
 

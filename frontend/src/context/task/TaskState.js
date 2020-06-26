@@ -9,6 +9,7 @@ import {
   SET_PROGRAM_TIME,
   LOAD_TASKS,
   TASK_ERROR,
+  SET_WALL_SEC,
 } from "./types";
 
 const TaskState = (props) => {
@@ -19,6 +20,7 @@ const TaskState = (props) => {
     hourColor: "#611224",
     currentTask: "",
     displayMessage: null,
+    wallClockSeconds: null,
     logs: null,
     error: null,
   };
@@ -36,10 +38,6 @@ const TaskState = (props) => {
       });
     } catch (error) {
       console.log(error, "------------------------");
-      dispatch({
-        type: TASK_ERROR,
-        payload: error.response.error,
-      });
     }
   };
 
@@ -68,12 +66,12 @@ const TaskState = (props) => {
   };
 
   // set current task
-  //   const setCurrent = (task) => {
-  //     dispatch({
-  //       type: SET_CURRENT,
-  //       payload: task,
-  //     });
-  //   };
+  const setWallClockSeconds = (seconds) => {
+    dispatch({
+      type: SET_WALL_SEC,
+      payload: seconds,
+    });
+  };
 
   return (
     <TaskContext.Provider
@@ -84,10 +82,12 @@ const TaskState = (props) => {
         hourColor: state.hourColor,
         currentTask: state.currentTask,
         displayMessage: state.displayMessage,
+        wallClockSeconds: state.wallClockSeconds,
         logs: state.logs,
         setProgramTime,
         loadReports,
         checkForTask,
+        setWallClockSeconds,
       }}
     >
       {props.children}

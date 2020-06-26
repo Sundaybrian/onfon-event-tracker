@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 
 import TaskContext from "./context/task/taskContext";
 import Logs from "./components/Logs";
+import ClockComponent from "./components/ClockComponent";
 
 const App = () => {
   const context = useContext(TaskContext);
@@ -15,6 +16,7 @@ const App = () => {
     hourColor,
     displayMessage,
     loadReports,
+    setWallClockSeconds,
   } = context;
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const App = () => {
     socket.on("dateFromApi", (data) => {
       let response = data.hour + ":" + data.minute + ":" + data.seconds;
       setProgramTime(response);
+      setWallClockSeconds(data.totalSeconds);
 
       const interval = setInterval(
         () =>
@@ -33,9 +36,13 @@ const App = () => {
           }),
         5000
       );
+
       // clear interval after unmounting
       return () => clearInterval(interval);
     });
+
+    // CLEAN UP THE EFFECT
+    return () => socket.disconnect();
   }, []);
 
   const fetchReports = () => {
@@ -54,6 +61,7 @@ const App = () => {
             <div className="col-md-12">
               <h4>programTime</h4>
               <p>The time is {programTime}</p>
+              <ClockComponent />
             </div>
             <div className="col-md-6">
               Current Task : {displayMessage ? displayMessage : "Not task yet"}

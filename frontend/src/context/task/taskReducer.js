@@ -4,6 +4,7 @@ import {
   SET_PROGRAM_TIME,
   LOAD_TASKS,
   TASK_ERROR,
+  SET_WALL_SEC,
 } from "./types";
 
 export default (state, action) => {
@@ -26,6 +27,11 @@ export default (state, action) => {
         hourColor: action.payload.hour_color,
         displayMessage: action.payload.result[0].displayMessage,
         currentTask: action.payload.result[0].message,
+      };
+    case SET_WALL_SEC:
+      return {
+        ...state,
+        wallClockSeconds: action.payload,
       };
 
     default:
