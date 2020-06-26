@@ -4,8 +4,6 @@
 
 ## By **[Onfon Event Tracker](https://github.com/Sundaybrian/onfon-event-tracker)**
 
-## Task: event tracker system
-
 ## Goal:
 
 Design and implement a program that logs when tasks should be carried out as explained herein.
@@ -52,7 +50,7 @@ Each operation has a predetermined interval in which it should be started or sto
 
 ```
 
-## SAMPLE COMPUTATION/REPORT:
+## Sample Report:
 
 | Program Time | Event  |                  Message | Actual Time | Display Message (sent to UI for display |
 | ------------ | :----: | -----------------------: | ----------: | --------------------------------------: |
@@ -83,21 +81,10 @@ Each operation has a predetermined interval in which it should be started or sto
 
 ## API Documentation
 
-##### data
-
-- Data will vary depending on the endpoint hit..This is an example of a response
-
-```json
-
-```
-
-**Create, Read and Update articles endpoint**
-
 1. Create a supervisor[POST]<br/>
    `http://localhost:5000/api/create-supervisor`
 
-   ```json
-   {
+   ```js {
      "_id": "supervisor",
      "totalServersCount": 0,
      "totalServersRunning": 0,
@@ -110,7 +97,7 @@ Each operation has a predetermined interval in which it should be started or sto
 2) Create logs [POST]<br/>
    `http://localhost:5000/api/create-logs/`
 
-   ```json
+   ```js
    // the program will auto-generate the logs once an event is fired up
    {
    ,
@@ -126,89 +113,89 @@ Each operation has a predetermined interval in which it should be started or sto
    `http://localhost:5000/api/fetch-logs/`
    <br/>
 
-   ```json
+   ```js
    // example response for the logs
    [
      {
-       "_id": "5ef200b26943be0fca140113",
-       "programTime": "2020-06-23T12:10:07.538Z",
-       "event": "start",
-       "message": "start 11 servers",
-       "actualTime": "2020-06-23T12:10:07.538Z",
-       "displayMessage": "2020-06-23T12:10:07.538Z start 11 servers"
+       _id: "5ef200b26943be0fca140113",
+       programTime: "2020-06-23T12:10:07.538Z",
+       event: "start",
+       message: "start 11 servers",
+       actualTime: "2020-06-23T12:10:07.538Z",
+       displayMessage: "2020-06-23T12:10:07.538Z start 11 servers",
      },
      {
-       "_id": "5ef2046f3a1c1c139379d1f8",
-       "programTime": "2020-06-23T12:10:07.538Z",
-       "event": "start",
-       "message": "start 11 servers",
-       "actualTime": "2020-06-23T12:10:07.538Z",
-       "displayMessage": "2020-06-23T12:10:07.538Z start 11 servers"
+       _id: "5ef2046f3a1c1c139379d1f8",
+       programTime: "2020-06-23T12:10:07.538Z",
+       event: "start",
+       message: "start 11 servers",
+       actualTime: "2020-06-23T12:10:07.538Z",
+       displayMessage: "2020-06-23T12:10:07.538Z start 11 servers",
      },
      {
-       "_id": "5ef204723a1c1c139379d1f9",
-       "programTime": "2020-06-23T12:10:07.538Z",
-       "event": "start",
-       "message": "start 11 servers",
-       "actualTime": "2020-06-23T12:10:07.538Z",
-       "displayMessage": "2020-06-23T12:10:07.538Z start 11 servers"
+       _id: "5ef204723a1c1c139379d1f9",
+       programTime: "2020-06-23T12:10:07.538Z",
+       event: "start",
+       message: "start 11 servers",
+       actualTime: "2020-06-23T12:10:07.538Z",
+       displayMessage: "2020-06-23T12:10:07.538Z start 11 servers",
      },
      {
-       "_id": "5ef51d8dc3f3d228f29c016d",
-       "programTime": "12:02:20",
-       "event": "START",
-       "message": "START 18 servers",
-       "actualTime": "0:56:28",
-       "displayMessage": "12:02:20START 18 servers"
+       _id: "5ef51d8dc3f3d228f29c016d",
+       programTime: "12:02:20",
+       event: "START",
+       message: "START 18 servers",
+       actualTime: "0:56:28",
+       displayMessage: "12:02:20START 18 servers",
      },
      {
-       "_id": "5ef51d8dc3f3d228f29c016e",
-       "programTime": "12:02:21",
-       "event": "START",
-       "message": "START 18 servers",
-       "actualTime": "0:56:29",
-       "displayMessage": "12:02:21START 18 servers"
+       _id: "5ef51d8dc3f3d228f29c016e",
+       programTime: "12:02:21",
+       event: "START",
+       message: "START 18 servers",
+       actualTime: "0:56:29",
+       displayMessage: "12:02:21START 18 servers",
      },
      {
-       "_id": "5ef51dbdc3f3d228f29c016f",
-       "programTime": "12:03:08",
-       "event": "START",
-       "message": "START 13 servers",
-       "actualTime": "0:57:16",
-       "displayMessage": "12:03:08START 13 servers"
+       _id: "5ef51dbdc3f3d228f29c016f",
+       programTime: "12:03:08",
+       event: "START",
+       message: "START 13 servers",
+       actualTime: "0:57:16",
+       displayMessage: "12:03:08START 13 servers",
      },
      {
-       "_id": "5ef52052fdfcd82aa7403bb9",
-       "programTime": "12:00:22",
-       "event": "START",
-       "message": "START 17 servers",
-       "actualTime": "1:8:17",
-       "displayMessage": "12:00:22START 17 servers"
+       _id: "5ef52052fdfcd82aa7403bb9",
+       programTime: "12:00:22",
+       event: "START",
+       message: "START 17 servers",
+       actualTime: "1:8:17",
+       displayMessage: "12:00:22START 17 servers",
      },
      {
-       "_id": "5ef52052fdfcd82aa7403bba",
-       "programTime": "12:00:22",
-       "event": "START",
-       "message": "START 17 servers",
-       "actualTime": "1:8:17",
-       "displayMessage": "12:00:22START 17 servers"
+       _id: "5ef52052fdfcd82aa7403bba",
+       programTime: "12:00:22",
+       event: "START",
+       message: "START 17 servers",
+       actualTime: "1:8:17",
+       displayMessage: "12:00:22START 17 servers",
      },
      {
-       "_id": "5ef52168290f402b10691e5f",
-       "programTime": "12:01:12",
-       "event": "START",
-       "message": "START 14 servers",
-       "actualTime": "1:12:56",
-       "displayMessage": "12:01:12START 14 servers"
-     }
-   ]
+       _id: "5ef52168290f402b10691e5f",
+       programTime: "12:01:12",
+       event: "START",
+       message: "START 14 servers",
+       actualTime: "1:12:56",
+       displayMessage: "12:01:12START 14 servers",
+     },
+   ];
    ```
 
 4. Fetch a supervisor [GET]<br/>
    `http://localhost:5000/api/fetch-supervisor/:id`
    <br/>
 
-   ```json
+   ```js
    // returns a matching supervisor obj
    {
      "_id": "supervisor",
