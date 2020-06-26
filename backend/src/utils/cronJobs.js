@@ -1,24 +1,6 @@
 const cron = require("node-cron");
 const { getServerCount } = require("../utils/mongo");
 
-const tasks = [
-  {
-    task: "START",
-    interval: "*/1 * * * * *",
-    precedence: 1,
-  },
-  {
-    task: "STOP",
-    interval: "*/2 * * * * *",
-    precedence: 2,
-  },
-  {
-    task: "REPORT",
-    interval: "*/5 * * * * *",
-    precedence: 3,
-  },
-];
-
 const startTask = () => {
   cron.schedule("*/30 * * * * *", async function () {
     //start globals
@@ -26,6 +8,8 @@ const startTask = () => {
     global.startServerCount = Math.floor(Math.random() * (20 - 10 + 1) + 10);
     global.startIsHappening = global.programTime;
     global.startBool = true;
+
+    global.emitter.emit("START", { eventName: "START" });
   });
 };
 
