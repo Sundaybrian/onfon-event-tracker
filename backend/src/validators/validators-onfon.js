@@ -17,10 +17,13 @@ exports.createSupervisorValidator = async (req, res, next) => {
   }
 };
 
-exports.fetchSupervisorValidator = async (req, res, next) => {
+exports.checkForTaskValidator = async (req, res, next) => {
   try {
-    await validateAll(req.params, {
-      id: "required|string",
+    await validateAll(req.body, {
+      programTime: "required|string",
+      wallColor: "string",
+      faceColor: "string",
+      hourColor: "string",
     });
 
     return next();
@@ -29,12 +32,10 @@ exports.fetchSupervisorValidator = async (req, res, next) => {
   }
 };
 
-exports.createColorsValidator = async (req, res, next) => {
+exports.fetchSupervisorValidator = async (req, res, next) => {
   try {
-    await validateAll(req.body, {
-      _id: "required|string",
-      currentColor: "required|string",
-      nextColor: "string",
+    await validateAll(req.params, {
+      id: "required|string",
     });
 
     return next();
