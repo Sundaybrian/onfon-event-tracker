@@ -257,6 +257,10 @@ Each operation has a predetermined interval in which it should be started or sto
 
 ## Learn More
 
+## Bugs
+
+- Couple of bugs to take care of
+
 ### License
 
 MIT
