@@ -13,6 +13,7 @@ const App = () => {
     wallColor,
     faceColor,
     hourColor,
+    displayMessage,
     loadReports,
   } = context;
 
@@ -35,10 +36,6 @@ const App = () => {
       // clear interval after unmounting
       return () => clearInterval(interval);
     });
-
-    // if (programTime) {
-
-    // }
   }, []);
 
   const fetchReports = () => {
@@ -58,7 +55,9 @@ const App = () => {
               <h4>programTime</h4>
               <p>The time is {programTime}</p>
             </div>
-            <div className="col-md-6">Current Task</div>
+            <div className="col-md-6">
+              Current Task : {displayMessage ? displayMessage : "Not task yet"}
+            </div>
             <div className="col-md-6">{programTime}</div>
             <div className="col-md-6 offset-3">
               <button

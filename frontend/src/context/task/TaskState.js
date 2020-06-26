@@ -18,7 +18,7 @@ const TaskState = (props) => {
     faceColor: "#fb3",
     hourColor: "#611224",
     currentTask: "",
-    displayMessage: "",
+    displayMessage: null,
     logs: null,
     error: null,
   };

@@ -24,6 +24,8 @@ export default (state, action) => {
         wallColor: action.payload.wall_color,
         faceColor: action.payload.face_color,
         hourColor: action.payload.hour_color,
+        displayMessage: action.payload.result[0].displayMessage,
+        currentTask: action.payload.result[0].message,
       };
 
     default:
