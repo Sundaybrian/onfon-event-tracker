@@ -9,7 +9,7 @@ const startTask = () => {
     global.startIsHappening = global.programTime;
     global.startBool = true;
 
-    global.emitter.emit("START", { eventName: "START" });
+    // global.emitter.emit("START", { eventName: "START" });
   });
 };
 
