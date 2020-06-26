@@ -49,7 +49,7 @@ const reportTask = (db) => {
 };
 
 exports.cronjob = (db) => {
-  // startTask();
-  // stopTask(db);
+  startTask();
+  stopTask(db);
   reportTask(db);
 };
