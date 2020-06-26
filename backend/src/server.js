@@ -61,6 +61,7 @@ const start = async () => {
       hour,
       minute,
       seconds,
+      totalSeconds,
     };
 
     // set global variables and update program time and current time everywhere
