@@ -261,15 +261,12 @@ Each operation has a predetermined interval in which it should be started or sto
 - mongoose
 - mongodb
 - react
-- ionic-angular
 - socketio
 - axios
 - indicative
 - bootstrap4.5
 - node-cron
 - any dependency not mentioned will be in the `package.json`
-
-## Learn More
 
 ## Bugs
 
