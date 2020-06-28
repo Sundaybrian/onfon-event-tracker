@@ -1,8 +1,8 @@
-# Onfon even tracker
+# **[Onfon Event Tracker](https://github.com/Sundaybrian/onfon-event-tracker)**
 
 ###
 
-## By **[Onfon Event Tracker](https://github.com/Sundaybrian/onfon-event-tracker)**
+## By Brian Sunday
 
 ## Goal:
 
