@@ -1,6 +1,8 @@
 const socketIo = require("socket.io");
 const http = require("http");
 const express = require("express");
+const dotenv = require("dotenv");
+
 const setupMiddleware = require("./setup/middlewares");
 const setupDatabase = require("./setup/database");
 const setupRouter = require("./setup/router");
@@ -9,6 +11,7 @@ const logTimeStarted = require("./utils/logTimeStarted");
 const { cronjob } = require("./utils/cronJobs");
 
 const app = express();
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 // register middlewares to the express app e.g cors,bodyparser
@@ -38,7 +41,6 @@ const start = async () => {
 
     // lauch cronjob here
     cronjob(db);
-    // launch time logged here
 
     interval = setInterval(() => getApiAndEmit(socket), 1000);
 
