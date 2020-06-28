@@ -1,5 +1,6 @@
 const socketIo = require("socket.io");
 const http = require("http");
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 
@@ -74,6 +75,17 @@ const start = async () => {
     // emit a new message which will be consumed by the client
     socket.emit("dateFromApi", response);
   };
+
+  // serve static assests in production
+  if (process.env.PRODUCTION === "production") {
+    // set static folder
+    app.use(express.static("frontend/build"));
+
+    // hit homepage load index page
+    app.get("*", (req, res) =>
+      res.sendfile(path.resolve(__dirname, "frontend", "build", "index.html"))
+    );
+  }
 
   server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`);
